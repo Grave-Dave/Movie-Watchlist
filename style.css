@@ -1,0 +1,258 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	background-color: #222;
+	color: #fff;
+	overflow-y: auto;
+	background-image: url(./img/header.jpg);
+	background-position: 0 -550px;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.app {
+	margin: 0 auto;
+	height: 100vh;
+	max-width: 1000px;
+	box-shadow: 0 0 15px #000;
+}
+
+header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1em;
+	height: 150px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.heading {
+	font-size: 3rem;
+}
+.watchlist-link {
+	position: relative;
+	padding: 1em;
+	font-size: 1.4rem;
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 20px;
+	text-transform: uppercase;
+	font-weight: 200;
+	transition: color 0.2s;
+    overflow: hidden;
+    z-index: 1;
+}
+.watchlist-link:hover {
+    color: #000;
+}
+
+.watchlist-link::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+    transform: scaleX(0%);
+    transform-origin: left;
+	background-color: #f6f4f4;
+    transition: transform 0.3s;
+    z-index: -1;
+}
+
+.watchlist-link:hover::before {
+	transform: scaleX(100%);
+    transform-origin: right;
+}
+
+
+main {
+	position: relative;
+	background-color: #fff;
+	padding-top: 2em;
+	min-height: calc(100% - 150px);
+}
+
+.input-box {
+	position: absolute;
+	top: -20px;
+	left: 50%;
+	display: flex;
+	justify-content: center;
+	transform: translateX(-50%);
+	width: 80%;
+}
+.input-box input {
+	padding: 0.8em 1em;
+	width: 60%;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-right: none;
+}
+
+.input-box button {
+	padding: 0.8em 1em;
+	width: 30%;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(246, 244, 244);
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.input-box button:hover {
+	background-color: rgb(226, 223, 223);
+}
+
+.movies,
+.saved-movies {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	padding: 1em 1em;
+}
+
+.placeholder-text,
+.placeholder-img {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.placeholder-text {
+	text-align: center;
+	padding-top: 2em;
+	color: #dfdddd;
+	font-weight: 700;
+	font-size: 1.8rem;
+}
+
+.placeholder-text i {
+	margin-bottom: 0.3em;
+	font-size: 6rem;
+}
+
+.movie--item {
+	display: flex;
+	padding: 2em 0;
+	border-bottom: 2px solid rgba(107, 106, 106, 0.3);
+	width: 100%;
+}
+.movie--item:last-of-type {
+	border: none;
+}
+
+.movie--poster {
+	width: 120px;
+	object-fit: cover;
+}
+
+.movie--info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 100%;
+	min-height: 100%;
+	color: #000;
+	padding-left: 2em;
+}
+
+.movie--title {
+	display: flex;
+	align-items: center;
+	font-size: 1.6rem;
+}
+
+.movie--score {
+	margin-left: 1em;
+	font-size: 1.2rem;
+}
+
+.movie--details {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	row-gap: 1em;
+	padding: 1em 0;
+	width: 70%;
+	font-size: 1.2rem;
+}
+
+.movie--details .save-btn {
+	padding: 1em 2em 1em 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: transform 0.3s, color 0.2s;
+}
+
+.movie--details .save-btn:hover {
+	transform: scale(0.97);
+	color: #888;
+}
+.movie--details .save-btn[disabled] {
+	cursor: not-allowed;
+}
+.movie--details .save-btn[disabled]:hover {
+	transform: scale(1);
+	color: lightgrey;
+}
+
+.description {
+	font-size: 1.4rem;
+	color: #6b7280;
+	line-height: 20px;
+}
+
+.year,
+.time,
+.genre {
+	color: #aaa;
+}
+
+@media (min-width: 768px) {
+	header {
+		height: 200px;
+	}
+	main {
+		min-height: calc(100% - 200px);
+	}
+	.heading {
+		font-size: 4rem;
+	}
+	.watchlist-link {
+		font-size: 2rem;
+	}
+	.movies,
+	.saved-movies {
+		padding: 1em 2em;
+	}
+	.movie--details {
+		flex-direction: row;
+		align-items: center;
+		padding: 0;
+	}
+	.movie--title {
+		font-size: 1.8rem;
+	}
+	.movie--poster {
+		width: 150px;
+	}
+}

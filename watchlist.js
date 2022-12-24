@@ -1,33 +1,33 @@
 let movies = JSON.parse(localStorage.getItem('movies'));
-
 const savedMoviesSection = document.querySelector('.saved-movies');
 
 function removeItemAll(arr, value) {
-    let i = 0;
-    while (i < arr.length) {
-      if (arr[i] === value) {
-        arr.splice(i, 1);
-      } else {
-        ++i;
-      }
+  let i = 0;
+  while (i < arr.length) {
+    if (arr[i] === value) {
+      arr.splice(i, 1);
+    } else {
+      ++i;
     }
-    return arr;
   }
+  return arr;
+}
 
 function removeMovie(id) {
-	const newMovies = movies.map(movie => {
-		return movie.imdbID === id ? 'delete' : movie
+  const newMovies = movies.map(movie => {
+    return movie.imdbID === id ? 'delete' : movie
 	});
-    removeItemAll(newMovies, 'delete')
-    movies = newMovies
+  removeItemAll(newMovies, 'delete')
+  movies = newMovies
 	if (newMovies.length > 0) localStorage.setItem('movies', JSON.stringify(movies));
 	else localStorage.removeItem('movies');
-    window.location.reload();
+  render();
+  
 }
 
 // console.log(movies);
 function refreshSaved() {
-	if (movies) {
+	if (movies && movies.length>0) {
 		return movies.map(movie => {
 			return `<div class="movie--item">
                <img class='movie--poster' src=${movie.Poster}>
@@ -39,5 +39,7 @@ function refreshSaved() {
 		});
 	} else return `<p class="placeholder-text"><i class="fa-solid fa-wind"></i><br />There is nothing here </p>`;
 }
-
-savedMoviesSection.innerHTML = refreshSaved();
+const render = ()=>{
+  savedMoviesSection.innerHTML = refreshSaved();
+}
+render()

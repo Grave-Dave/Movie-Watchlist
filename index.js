@@ -9,6 +9,9 @@ input.addEventListener('keyup', e => {
 
 function addMovie(e, id) {
 	e.target.disabled = true;
+	document.getElementById(id).innerHTML = `
+	<i class="fa-solid fa-check"></i>
+	watchlist`;
 
 	fetch(`https://www.omdbapi.com/?i=${id}&apikey=c64db92f`)
 		.then(res => res.json())
@@ -52,7 +55,7 @@ function getMovies(movie) {
 		movie.imdbRating
 	}</span></h2><div class="movie--details"><span class="year">${movie.Year}</span><span class="time">${
 		movie.Runtime
-	}</span><span class="genre">${movie.Genre}</span><button ${checkBtn && 'disabled'} onclick="addMovie(event, '${
+	}</span><span class="genre">${movie.Genre}</span><button id= ${movie.imdbID} ${checkBtn && 'disabled'} onclick="addMovie(event, '${
 		movie.imdbID
 	}')" class="save-btn"><i class="fa-solid fa-circle-plus"></i> Watchlist</button></div>
                <p class="description">${movie.Plot}.</p>
